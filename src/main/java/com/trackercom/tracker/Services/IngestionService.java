@@ -5,7 +5,11 @@ import com.trackercom.tracker.Repo.Event_repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -18,7 +22,7 @@ public class IngestionService {
 
         String batchId = UUID.randomUUID().toString();
         Instant now = Instant.now();
-
+        ArrayList<RawEvent> value=new ArrayList<>();
 
         for (Events_Ingestion_DTO.EventItem ev : req.events) {
 
@@ -35,9 +39,10 @@ public class IngestionService {
             raw.setDeviceInfo(req.deviceinfo);
 
             raw.setIngestedAt(now);
-
-            repo.save(raw);
+            value.add(raw);
         }
+        repo.saveAll(value);
+        System.out.println("akjsbjaskbdjkasbdjasbd+"+value.size());
     }
 }
 

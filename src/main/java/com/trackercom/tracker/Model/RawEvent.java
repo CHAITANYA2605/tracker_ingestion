@@ -2,6 +2,7 @@ package com.trackercom.tracker.Model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
@@ -16,10 +17,11 @@ public class RawEvent {
     @Id
     private String id; // uuid string
 
-
+    @Indexed
     private String appId;
     private String userId;
     private String deviceId;
+    @Indexed
     private String eventName;
 
 
