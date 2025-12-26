@@ -23,7 +23,7 @@ public class Ingestion_controller {
             }
 
             ingestionService.handleBatch(req, appId);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().body("Success");
         }
 
 }
