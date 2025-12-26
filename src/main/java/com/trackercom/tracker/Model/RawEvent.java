@@ -32,6 +32,8 @@ public class RawEvent {
 
     private Boolean processed = false;
     private Instant processedAt;
+    private Long createdAt;
+    private String createdAtUTC;
     private Instant ingestedAt;
     private String batchId;
 }

@@ -12,5 +12,7 @@ public class Events_Ingestion_DTO {
     public static class EventItem {
         public String name;
         public Map<String, Object> properties;
+        public Long timestamp;
+        public String time;
     }
 }

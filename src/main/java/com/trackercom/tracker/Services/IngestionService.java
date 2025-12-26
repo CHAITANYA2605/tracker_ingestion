@@ -37,7 +37,9 @@ public class IngestionService {
             raw.setEventName(ev.name);
             raw.setProperties(ev.properties);
             raw.setDeviceInfo(req.deviceinfo);
-
+            raw.setCreatedAt(ev.timestamp);
+            raw.setCreatedAtUTC(ev.time);
+            raw.setBatchId(batchId);
             raw.setIngestedAt(now);
             value.add(raw);
         }
