@@ -46,5 +46,19 @@ public class IngestionService {
         repo.saveAll(value);
         System.out.println("akjsbjaskbdjkasbdjasbd+"+value.size());
     }
+    
+    public boolean isTrackingAllowed(Events_Inestion_DTO req, String appId) {
+        if (appId == null) return true;
+
+        // Example: simple app-level toggle. Replace with real checks (DB/service).
+        if ("disable_app".equalsIgnoreCase(appId)) {
+            return false;
+        }
+
+        // Optionally inspect req.deviceid or req.userid for device-level/ user-level rules
+        // e.g. if a device is in a blacklist collection return false.
+
+        return true;
+    }
 }
 
