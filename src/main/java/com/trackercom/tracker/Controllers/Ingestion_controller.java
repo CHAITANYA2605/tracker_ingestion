@@ -26,4 +26,17 @@ public class Ingestion_controller {
             return ResponseEntity.ok().body("Success");
         }
 
+        @PostMapping("/ingest",params="check=init")
+        public ResponseEntity<?> ingestCheck(@RequestBody Events_Ingestion_DTO req,
+                                         @RequestHeader("x-app-id") String appId,
+                                         @RequestParam("check") String check) {
+                boolean allowed = ingestionService.isTrackingAllowed(req, appId);
+        if (allowed) {
+            return ResponseEntity.ok().body("tracking_allowed");
+        } else {
+            return ResponseEntity.status(300).body("tracking_disabled");
+        }
+                
+        }
+
 }
