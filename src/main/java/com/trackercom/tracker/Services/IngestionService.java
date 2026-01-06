@@ -47,7 +47,7 @@ public class IngestionService {
         System.out.println("akjsbjaskbdjkasbdjasbd+"+value.size());
     }
     
-    public boolean isTrackingAllowed(Events_Inestion_DTO req, String appId) {
+    public boolean isTrackingAllowed(Events_Ingestion_DTO req, String appId) {
         if (appId == null) return true;
 
         // Example: simple app-level toggle. Replace with real checks (DB/service).

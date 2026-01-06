@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1")
 public class Ingestion_controller {
@@ -26,17 +28,22 @@ public class Ingestion_controller {
             return ResponseEntity.ok().body("Success");
         }
 
-        @PostMapping("/ingest",params="check=init")
+        @PostMapping(value  = "/ingest",params="check=init")
         public ResponseEntity<?> ingestCheck(@RequestBody Events_Ingestion_DTO req,
                                          @RequestHeader("x-app-id") String appId,
                                          @RequestParam("check") String check) {
+            System.out.println("jksbdjasdn++++"+check+"+++++"+appId+"+++"+req.toString());
                 boolean allowed = ingestionService.isTrackingAllowed(req, appId);
         if (allowed) {
-            return ResponseEntity.ok().body("tracking_allowed");
+            System.out.println("jksbdjasdn++++"+check+"+++++"+appId+"+++"+req.toString()+"+++if");
+             return ResponseEntity.ok(Map.of(
+                    "status", "enabled"
+            ));
         } else {
+            System.out.println("jksbdjasdn++++"+check+"+++++"+appId+"+++"+req.toString()+"+++else");
             return ResponseEntity.status(300).body("tracking_disabled");
         }
-                
+
         }
 
 }
