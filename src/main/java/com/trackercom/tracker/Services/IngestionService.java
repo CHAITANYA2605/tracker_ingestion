@@ -18,7 +18,7 @@ public class IngestionService {
     Event_repo repo;
 
 
-    public void handleBatch(Events_Ingestion_DTO req, String appId) {
+    public void handleBatch(Events_Ingestion_DTO req, String appId, String analyticsDatabase) {
 
         String batchId = UUID.randomUUID().toString();
         Instant now = Instant.now();
@@ -31,6 +31,7 @@ public class IngestionService {
             raw.setBatchId(batchId);
 
             raw.setAppId(appId);
+            raw.setAnalyticsDatabase(analyticsDatabase);
             raw.setUserId(req.userid);
             raw.setDeviceId(req.deviceid);
 
@@ -47,4 +48,3 @@ public class IngestionService {
         System.out.println("akjsbjaskbdjkasbdjasbd+"+value.size());
     }
 }
-

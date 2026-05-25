@@ -19,6 +19,7 @@ public class RawEvent {
 
     @Indexed
     private String appId;
+    private String analyticsDatabase;
     private String userId;
     private String deviceId;
     @Indexed

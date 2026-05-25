@@ -16,13 +16,14 @@ public class Ingestion_controller {
 
         @PostMapping("/ingest")
         public ResponseEntity<?> ingest(@RequestBody Events_Ingestion_DTO req,
-                                        @RequestHeader("x-app-id") String appId) {
+                                        @RequestHeader("x-app-id") String appId,
+                                        @RequestHeader(value = "x-analytics-database", required = false) String analyticsDatabase) {
 
             if (req.events == null || req.events.isEmpty()) {
                 return ResponseEntity.badRequest().body("Events array cannot be empty");
             }
 
-            ingestionService.handleBatch(req, appId);
+            ingestionService.handleBatch(req, appId, analyticsDatabase);
             return ResponseEntity.ok().body("Success");
         }
 
