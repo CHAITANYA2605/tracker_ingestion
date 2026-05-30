@@ -48,16 +48,12 @@ public class IngestionService {
     }
     
     public boolean isTrackingAllowed(Events_Ingestion_DTO req, String appId) {
-        if (appId == null) return true;
-
-        // Example: simple app-level toggle. Replace with real checks (DB/service).
+        if (appId == null) return false;
         if ("disable_app".equalsIgnoreCase(appId)) {
             return false;
         }
 
-        // Optionally inspect req.deviceid or req.userid for device-level/ user-level rules
-        // e.g. if a device is in a blacklist collection return false.
-
+//        handleBatch(req, appId);
         return true;
     }
 }
